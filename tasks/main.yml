@@ -1,0 +1,26 @@
+---
+- name: "{{ bwrs_task_prefix }} Create directories"
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ bwrs_path_datadir }}"
+    - "{{ bwrs_path_datadir }}"
+- name: "{{ bwrs_task_prefix }} Create env file"
+  template:
+    src: "{{ bwrs_template_env }}"
+    dest: "{{ bwrs_path_envfile }}"
+- name: "{{ bwrs_task_prefix }} Provision container"
+  docker_container:
+    env_file: "{{ bwrs_path_envfile }}"
+    image: "{{ bwrs_container_image }}"
+    name: "{{ bwrs_container_name }}"
+    ports:
+      - "{{ bwrs_listen }}:{{ bwrs_port_www }}:{{ bwrs_intport_www }}"
+      - "{{ bwrs_listen }}:{{ bwrs_port_socker }}:{{ bwrs_intport_socker }}"
+    pull: "{{ bwrs_container_pull }}"
+    recreate: "{{ bwrs_container_recreate }}"
+    restart_policy: "{{ bwrs_container_restart_policy }}"
+    state: "{{ bwrs_container_state }}"
+    volumes:
+      - "{{ bwrs_path_datadir }}:{{ bwrs_intpath_datadir }}"

@@ -1,0 +1,48 @@
+---
+# All variables specific to this role are prefixed with "bwrs_"
+bwrs_task_prefix: "=== Bitwarden RS ==="
+# Paths
+bwrs_path_datadir: "/opt/bwrsdata"
+bwrs_path_configdir: "/etc/bitwardenrs"
+bwrs_path_envfile: "{{ bwrs_path_configdir }}/bitwardenrs.env"
+bwrs_intpath_datadir: "/data"
+# Environment file template
+bwrs_template_env: "bitwardenrs.env.j2"
+# Listen address
+bwrs_listen: "127.0.0.1"
+# External ports
+bwrs_port_www: "8080"
+bwrs_port_socker: "3012"
+# Internal ports
+bwrs_intport_www: "80"
+bwrs_intport_socker: "3012"
+# Name of the Docker container
+bwrs_container_image: "bitwardenrs/server"
+bwrs_container_name: "bitwardenrs"
+bwrs_container_pull: "no"
+bwrs_container_recreate: "no"
+bwrs_container_restart_policy: "always"
+bwrs_container_state: "started"
+# Environment variables
+# Disable sign up
+bwrs_env_signups_allowed: "false"
+# Disabled invites
+bwrs_env_invitations_allowed: "false"
+# Admin Token to access admin area
+bwrs_env_admin_token: ""
+# Disable Admin Token
+bwrs_env_disable_admin_token: "false"
+# Enable WebSocket
+bwrs_env_websocket_enabled: "true"
+# Domain name of Bitwarden RS instance
+bwrs_env_domain: ""
+# SMTP settings
+bwrs_env_smtp_host: "127.0.0.1"
+bwrs_env_smtp_from: "admin@example.com"
+bwrs_env_smtp_port: "587"
+bwrs_env_smtp_ssl: "true"
+bwrs_env_smtp_username: ""
+bwrs_env_smtp_password: ""
+bwrs_env_smtp_explicit_tls: "true"
+# Show password hint
+bwrs_env_show_password_hint: "false"
