@@ -5,7 +5,7 @@
     state: directory
   loop:
     - "{{ bwrs_path_datadir }}"
-    - "{{ bwrs_path_datadir }}"
+    - "{{ bwrs_path_configdir }}"
 - name: "{{ bwrs_task_prefix }} Create env file"
   template:
     src: "{{ bwrs_template_env }}"
